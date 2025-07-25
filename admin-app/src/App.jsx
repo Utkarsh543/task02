@@ -110,7 +110,7 @@ function AdminUserPanel() {
           <Card key={user._id} sx={{ mb: 2 }}>
             <CardContent>
               <Typography variant="h6">
-                {user.username} ({user.email})
+                {user.name} ({user.email})
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 Role: {user.role}
