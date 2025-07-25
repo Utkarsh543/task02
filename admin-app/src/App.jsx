@@ -18,7 +18,7 @@ function AdminUserPanel() {
     ifscCode: ""
   });
 
-  const [users, setUsers] = useState([]); 
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
 
   // Fetch users from the API
@@ -30,7 +30,7 @@ function AdminUserPanel() {
       if (filters.bankName) params.bankName = filters.bankName;
       if (filters.ifscCode) params.ifscCode = filters.ifscCode;
 
-      const response = await axios.get("http://localhost:3000/admin/users", { params });
+      const response = await axios.get("https://task02-slur.onrender.com/admin/users", { params });
 
       console.log("API response:", response.data);
 
@@ -119,14 +119,26 @@ function AdminUserPanel() {
                 Bank Accounts:
               </Typography>
               {user.bankAccounts && user.bankAccounts.length > 0 ? (
-                <ul>
+                <div>
                   {user.bankAccounts.map((acc) => (
-                    <li key={acc._id}>
-                      <strong>{acc.bankName}</strong> — A/C: {acc.accountNumber} — IFSC:{" "}
-                      {acc.ifscCode}
-                    </li>
+                    <Card key={acc._id} sx={{ mb: 2, p: 1, boxShadow: 3 }}>
+                      <CardContent>
+                        <Typography variant="body1">
+                          <strong>Bank:</strong> {acc.bankName}
+                        </Typography>
+                        <Typography variant="body1">
+                          <strong>A/C:</strong> {acc.accountNumber}
+                        </Typography>
+                        <Typography variant="body1">
+                          <strong>IFSC:</strong> {acc.ifscCode}
+                        </Typography>
+                        <Typography variant="body1">
+                          <strong>Branch:</strong> {acc.branchName}
+                        </Typography>
+                      </CardContent>
+                    </Card>
                   ))}
-                </ul>
+                </div>
               ) : (
                 <Typography variant="body2" color="text.secondary">
                   No bank accounts

@@ -41,7 +41,7 @@ router.get("/users", async (req, res) => {
       pipeline.push({
         $group: {
           _id: "$_id",
-          name: { $first: "$name" },
+          name: { $first: "$username" },
           email: { $first: "$email" },
           role: { $first: "$role" },
           bankAccounts: { $push: "$bankAccounts" }
