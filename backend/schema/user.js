@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { required } from "zod/mini";
 
 const UserSchema = new mongoose.Schema({
     username:{

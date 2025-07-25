@@ -18,7 +18,7 @@ function AdminUserPanel() {
     ifscCode: ""
   });
 
-  const [users, setUsers] = useState([]); // Start with an empty array
+  const [users, setUsers] = useState([]); 
   const [loading, setLoading] = useState(false);
 
   // Fetch users from the API
@@ -34,19 +34,18 @@ function AdminUserPanel() {
 
       console.log("API response:", response.data);
 
-      // Ensure response is safe to use
       const fetchedUsers = Array.isArray(response.data.users) ? response.data.users : [];
       setUsers(fetchedUsers);
     } catch (err) {
       console.error("Error fetching users", err);
-      setUsers([]); // fallback to empty
+      setUsers([]);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchUsers(); // Load all users on mount
+    fetchUsers();
   }, []);
 
   const handleChange = (e) => {
@@ -55,7 +54,7 @@ function AdminUserPanel() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchUsers(); // Apply filters
+    fetchUsers();
   };
 
   return (
